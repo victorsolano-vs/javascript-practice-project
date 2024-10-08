@@ -690,4 +690,5 @@ export function loadProducts(func){
   xhr.send()
 }
 
+
 // loadProducts();
