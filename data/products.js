@@ -26,10 +26,12 @@ export function loadProductsFetch()
     //console.log(productsData)
     console.log('load products from fetch')
   })
+  .catch((error) => {
+    console.log('unexpected error. Please try again later.')
+  })
   return promise
   
 }
-
 
 // loadProductsFetch().then(() => {
 //   console.log('next step')
@@ -42,6 +44,10 @@ export function loadProducts(func){
     products = JSON.parse(xhr.response)
     //console.log('load products')
     func();
+  })
+
+  CharacterData.addEventListener('error', (error) => {
+    console.log('unexpected error. Please try again later.')
   })
   
 
