@@ -11,6 +11,50 @@ export function getProduct(productId){
   return matchingProduct
 }
 
+
+
+export let products = []
+
+export function loadProductsFetch()
+{
+  const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
+    console.log(response)    
+    return response.json()
+    
+  }).then((productsData) => {
+    products = productsData
+    console.log(productsData)
+    console.log('load products from fetch')
+  })
+  return promise
+  
+}
+
+
+// loadProductsFetch().then(() => {
+//   console.log('next step')
+// });
+
+export function loadProducts(func){
+  const xhr = new XMLHttpRequest()
+
+  xhr.addEventListener('load', () => {
+    products = JSON.parse(xhr.response)
+    console.log('load products')
+    func();
+  })
+  
+
+  xhr.open('GET', 'https://supersimplebackend.dev/products')
+  xhr.send()
+}
+
+
+// loadProducts();
+
+
+
+
 /*
 export const products = [
   {
@@ -673,38 +717,3 @@ export const products = [
   }
 ];
 */
-
-export let products = []
-
-export function loadProductsFetch()
-{
-  const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
-    return response.json()
-    // console.log(response.json())
-  }).then((productsData) => {
-    console.log(productsData)
-  })
-  return promise
-  
-}
-
-// loadProductsFetch().then(() => {
-//   console.log('next step')
-// });
-
-export function loadProducts(func){
-  const xhr = new XMLHttpRequest()
-
-  xhr.addEventListener('load', () => {
-    products = JSON.parse(xhr.response)
-    console.log('hi')
-    func();
-  })
-  
-
-  xhr.open('GET', 'https://supersimplebackend.dev/products')
-  xhr.send()
-}
-
-
-// loadProducts();
