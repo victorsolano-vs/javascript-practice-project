@@ -18,12 +18,12 @@ export let products = []
 export function loadProductsFetch()
 {
   const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
-    console.log(response)    
+    //console.log(response)    
     return response.json()
     
   }).then((productsData) => {
     products = productsData
-    console.log(productsData)
+    //console.log(productsData)
     console.log('load products from fetch')
   })
   return promise
@@ -40,7 +40,7 @@ export function loadProducts(func){
 
   xhr.addEventListener('load', () => {
     products = JSON.parse(xhr.response)
-    console.log('load products')
+    //console.log('load products')
     func();
   })
   
